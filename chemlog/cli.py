@@ -20,6 +20,7 @@ from chemlog.alg_classification.proteinogenics_classifier import get_proteinogen
     AlgProteinogenicsClassifier
 from chemlog.alg_classification.substructure_classifier import is_emericellamide, is_diketopiperazine, \
     AlgSubstructureClassifier
+from chemlog.asp_classification.asp_classifier import ASPChargeClassifier, ASPPeptideSizeClassifier,     ASPProteinogenicsClassifier, ASPSubstructureClassifier
 from chemlog.base_classifier import ChargeCategories
 from chemlog.fol_classification.charge_verifier import ChargeVerifier
 from chemlog.fol_classification.functional_groups_verifier import FunctionalGroupsVerifier
@@ -182,6 +183,8 @@ def strategy_call(strategy, classifier_instances, mol):
                 if key in [ClassifierKeys.PROTEINOGENICS]:
                     args += [res[f"{ClassifierKeys.SIZE.name}_additional"]['amino_residue'],
                              res[f"{ClassifierKeys.SIZE.name}_additional"]['carboxy_residue']]
+                elif key in [ClassifierKeys.SUBSTRUCT]:
+                    args.append(res[ClassifierKeys.SIZE.name])
 
             classification, additional_output = classifier_instances[key].classify(mol, *args)
             logging.debug(f"Classification for {key.name}: {classification}")
@@ -237,6 +240,12 @@ CLASSIFIERS = {
     },
     'algo-translated': {
         ClassifierKeys.SIZE: AlgPeptideSizeClassifierTranslated
+    },
+    'asp': {
+        ClassifierKeys.CHARGE: ASPChargeClassifier,
+        ClassifierKeys.SIZE: ASPPeptideSizeClassifier,
+        ClassifierKeys.PROTEINOGENICS: ASPProteinogenicsClassifier,
+        ClassifierKeys.SUBSTRUCT: ASPSubstructureClassifier,
     }
 }
 
