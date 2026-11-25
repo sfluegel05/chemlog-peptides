@@ -36,6 +36,7 @@ For more details on the available command line options run
 2. Turning an MSOL model finding problem into a QBF satisfiability problem and solving that with [CAQE](https://github.com/ltentrup/caqe/tree/master) or [DepQBF](https://github.com/lonsing/depqbf), using the [Bloqqer](https://fmv.jku.at/bloqqer/) preprocessor.
 3. Turning an MOSL model finding problem partially into First-Order Logic (FOL) and solving that with a custom FOL model checker (since not all MSOL axioms are translatable, the non-translatable parts are calculated algorithmically).
 4. Using an algorithmic implementation
+5. Using Answer Set Programming (ASP) rules (`chemlog/asp_classification/peptide_rules.pl`) with [clingo](https://potassco.org/clingo/) (`--strategy asp`). Molecules are translated into ASP facts by `chemlog/preprocessing/mol_to_asp.py`.
 
 If you are just interested in the results, we recommend choosing the algorithmic implementation, as it is the fastest and can handle complex molecules.
 
