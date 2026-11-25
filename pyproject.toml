@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chemlog"
-version = "1.0.7"
+version = "1.1"
 description = "Peptide classifier for ChEBI / PubChem"
 readme = "README.md"
 license = "GPL-3.0-only"
